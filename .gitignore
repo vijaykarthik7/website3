@@ -1,0 +1,20 @@
+# Dependency directories
+node_modules/
+
+# Test screenshots and audits
+/*.png
+/*.jpg
+
+# Test & verification scripts
+/check_*.js
+/verify_*.js
+/test_*.js
+/debug_*.js
+/capture_*.js
+/list_*.js
+/measure.js
+
+# Temporary files
+/pdf_text.txt
+.DS_Store
+Thumbs.db

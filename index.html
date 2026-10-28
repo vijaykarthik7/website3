@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riyadvi Software Technologies | Imagining Beyond Reality</title>
+  <meta name="description" content="Riyadvi explores the boundary between imagination and reality, turning visionary concepts into enterprise digital solutions. Digital Technology & Business Growth Partner.">
+  
+  <!-- SEO & Open Graph Meta Tags -->
+  <meta property="og:title" content="Riyadvi Software Technologies | Imagining Beyond Reality">
+  <meta property="og:description" content="Digital Technology & Business Growth Partner. Web, Mobile, 3D, and AI.">
+  <meta property="og:image" content="assets/riyadvilogo.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="assets/riyadvilogo.png">
+
+  <!-- Google Fonts: Outfit (Clean light luxury sans), Syne (Display), Space Grotesk, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Three.js for Selected 3D Experiences -->
+  <script src="assets/three.min.js"></script>
+  <!-- Lenis for Buttery Smooth Momentum Scrolling -->
+  <script src="assets/lenis.min.js"></script>
+</head>
+<body class="loading-state">
+
+  <!-- Desktop Custom Magnetic Gold Cursor -->
+  <div class="custom-cursor" id="custom-cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring">
+      <span class="cursor-text" id="cursor-text"></span>
+    </div>
+  </div>
+
+  <!-- Ambient Golden Energy Line Canvas -->
+  <canvas id="energy-line-canvas" class="energy-canvas"></canvas>
+
+  <!-- Cinematic Preloader -->
+  <div id="preloader" class="preloader-overlay">
+    <div class="preloader-particles" id="preloader-particles"></div>
+    <div class="preloader-center">
+      <div class="emblem-wrapper">
+        <img src="assets/riyadvilogo.png" alt="Riyadvi Emblem" class="preloader-emblem" id="preloader-emblem">
+        <div class="light-sweep"></div>
+      </div>
+      <div class="preloader-brand">
+        <span class="brand-sub">RIYADVI SOFTWARE TECHNOLOGIES</span>
+        <div class="preloader-bar">
+          <div class="bar-fill" id="preloader-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Header Navigation (Styled from reference layout) -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      
+      <!-- Brand Logo + Typography on Left -->
+      <a href="#scroll-track" class="header-brand">
+        <img src="assets/riyadvilogo.png" alt="Riyadvi Logo" class="brand-icon">
+        <span class="brand-name">R I Y A D V I</span>
+      </a>
+
+      <!-- Center / Right Text Navigation (PDF Section 5) -->
+      <nav class="header-nav" id="header-nav">
+        <a href="#hero" class="nav-item active" data-nav="home">
+          HOME
+          <span class="active-dot"></span>
+        </a>
+        <a href="#about" class="nav-item" data-nav="about">
+          ABOUT US
+          <span class="active-dot"></span>
+        </a>
+        <a href="#services" class="nav-item" data-nav="services">
+          SERVICES
+          <span class="active-dot"></span>
+        </a>
+        <a href="#industries" class="nav-item" data-nav="industries">
+          INDUSTRIES
+          <span class="active-dot"></span>
+        </a>
+        <a href="#guardian" class="nav-item highlight-nav-gold" data-nav="guardian">
+          RIYADVI GUARDIAN
+          <span class="active-dot"></span>
+        </a>
+        <a href="#portfolio" class="nav-item" data-nav="portfolio">
+          PORTFOLIO
+          <span class="active-dot"></span>
+        </a>
+        <a href="#awards" class="nav-item" data-nav="awards">
+          AWARDS
+          <span class="active-dot"></span>
+        </a>
+        <a href="#tech-ecosystem" class="nav-item" data-nav="insights">
+          INSIGHTS
+          <span class="active-dot"></span>
+        </a>
+        <a href="#contact" class="nav-item" data-nav="contact">
+          CONTACT
+          <span class="active-dot"></span>
+        </a>
+      </nav>
+
+      <!-- Primary CTA: LET'S TALK (PDF Section 5) -->
+      <a href="#contact" class="header-cta-btn" id="header-primary-cta">
+        <span>LET'S TALK</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+
+      <!-- Hamburger Menu Icon on Far Right -->
+      <button class="menu-burger-btn" id="menu-toggle" aria-label="Toggle navigation">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Mobile Fullscreen Drawer (PDF Section 5) -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-inner">
+      <div class="mobile-nav-links">
+        <a href="#hero" class="mobile-link">Home</a>
+        <a href="#about" class="mobile-link">About Us</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="#industries" class="mobile-link">Industries</a>
+        <a href="#guardian" class="mobile-link highlight-gold">Riyadvi Guardian</a>
+        <a href="#portfolio" class="mobile-link">Portfolio</a>
+        <a href="#awards" class="mobile-link">Awards & Accreditations</a>
+        <a href="#tech-ecosystem" class="mobile-link">Insights</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <a href="tel:+918072487427" class="drawer-contact-pill">+91 8072487427</a>
+        <a href="https://wa.me/918072487427" target="_blank" rel="noopener" class="drawer-whatsapp-btn">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ====================================================================
+         FIXED BACKGROUND ROBOT JUMP SCROLL CANVAS
+         ==================================================================== -->
+    <div class="robo-bg-viewport" id="robo-bg-viewport">
+      <!-- HTML5 Canvas Rendering 192 Robojump Frames (Sections 1-3) -->
+      <canvas id="robojump-canvas"></canvas>
+      <!-- HTML5 Canvas Rendering 200 Earthrobo Frames (Sections 4-6) -->
+      <canvas id="earthrobo-canvas"></canvas>
+      <!-- HTML5 Canvas Rendering 192 Lapp Updated Frames (Sections 7-9) -->
+      <canvas id="lapp-canvas"></canvas>
+      <!-- HTML5 Canvas Rendering 192 Hand Animation Frames (Sections 10-13) -->
+      <canvas id="hand-canvas"></canvas>
+      <!-- HTML5 Canvas Rendering 192 Human Up Frames (Sections 14-16) -->
+      <canvas id="human-canvas"></canvas>
+      <!-- Cinematic Black Fade Overlay for Text Readability -->
+      <div class="hero-vignette-overlay"></div>
+    </div>
+
+    <!-- ====================================================================
+         01 — IMPACT: HERO SECTION (PDF SPEC SECTIONS 6, 7, 8, 9)
+         Direct scrolling section over Stage 1 (robojump updated) 3D canvas
+         ==================================================================== -->
+    <section class="hero-full-section" id="hero">
+      <div class="hero-left-content" id="hero-text-content">
+        <div class="phase-tag">// 01 — IMPACT</div>
+        <h1 class="hero-headline">
+          WE BUILD DIGITAL EXPERIENCES THAT DRIVE <span class="accent-gold-word">BUSINESS GROWTH.</span>
+        </h1>
+        
+        <div class="hero-thin-divider"></div>
+        
+        <p class="hero-paragraph">
+          Technology, design and digital growth engineered for businesses ready to move forward.
+        </p>
+
+        <!-- Verified Company Statistics (PDF Section 9) -->
+        <div class="hero-verified-metrics-row">
+          <div class="hero-stat-card">
+            <span class="stat-big counter-val" data-target="4">4+</span>
+            <span class="stat-desc">Years</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-big counter-val" data-target="80">80+</span>
+            <span class="stat-desc">Projects</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-big counter-val" data-target="50">50+</span>
+            <span class="stat-desc">Recurring Clients</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-big counter-val" data-target="100">100+</span>
+            <span class="stat-desc">Leads Generated</span>
+          </div>
+        </div>
+
+        <!-- Hero CTAs (PDF Section 9) -->
+        <div class="hero-cta-group">
+          <a href="#services" class="hero-pill-cta" id="hero-cta-btn">
+            <span class="cta-circle-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+            <span class="cta-label">EXPLORE OUR SERVICES</span>
+          </a>
+          <a href="#contact" class="hero-secondary-btn">
+            START A PROJECT
+          </a>
+          <a href="#story" class="hero-tertiary-link">
+            <span>WATCH OUR STORY</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom-Left Scroll Indicator -->
+      <div class="hero-bottom-left-cue">
+        <div class="scroll-pill-box">
+          <span class="scroll-dot-pulse"></span>
+          <span class="scroll-label-text">SCROLL TO EXPLORE 3D UNIVERSE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         02 — CREDIBILITY: AWARDS & ACCREDITATION (PDF SECTION 10)
+         Scrolling section over Stage 1 (robojump updated)
+         ==================================================================== -->
+    <section class="awards-section" id="awards">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// VERIFIED CREDIBILITY</span>
+          </div>
+          <h2 class="section-title">GLOBAL HONORS & ACCREDITATION</h2>
+          <p class="section-desc">Independent recognition acknowledging our technical precision, ethical business practices, and digital acceleration.</p>
+
+          <div class="awards-grid">
+            <!-- TechBehemoths Global Awards 2025 -->
+            <div class="award-card" data-award="techbehemoths">
+              <div class="award-card-glow"></div>
+              <div class="award-top">
+                <span class="award-year">2025</span>
+                <span class="award-badge-pill">GLOBAL WINNER</span>
+              </div>
+              <div class="award-body">
+                <div class="award-icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2">
+                    <circle cx="12" cy="8" r="7"></circle>
+                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                  </svg>
+                </div>
+                <h3 class="award-name">TechBehemoths Global Awards 2025</h3>
+                <p class="award-location">Berlin, Germany</p>
+                <div class="award-categories">
+                  <span class="cat-pill">ReactJS</span>
+                  <span class="cat-pill">WordPress</span>
+                  <span class="cat-pill">SMM</span>
+                </div>
+              </div>
+              <div class="award-footer">
+                <a href="https://techbehemoths.com/awards-2025/certificates/6a58f7e3-4772-4971-823c-5b6350c91308" target="_blank" rel="noopener" class="award-verify-btn">
+                  <span>VERIFY CERTIFICATE</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- DesignRush 2025 Recognition -->
+            <div class="award-card" data-award="designrush">
+              <div class="award-card-glow"></div>
+              <div class="award-top">
+                <span class="award-year">2025</span>
+                <span class="award-badge-pill">INDUSTRY LEADER</span>
+              </div>
+              <div class="award-body">
+                <div class="award-icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                  </svg>
+                </div>
+                <h3 class="award-name">DesignRush Recognition</h3>
+                <p class="award-location">Top Web Development Company 2025</p>
+                <div class="award-categories">
+                  <span class="cat-pill">Full-Stack Web</span>
+                  <span class="cat-pill">Enterprise UI</span>
+                </div>
+              </div>
+              <div class="award-footer">
+                <span class="verified-tag">✓ ACCREDITED AGENCY</span>
+              </div>
+            </div>
+
+            <!-- Star Excellence Awards 2021 -->
+            <div class="award-card" data-award="starexcellence">
+              <div class="award-card-glow"></div>
+              <div class="award-top">
+                <span class="award-year">2021</span>
+                <span class="award-badge-pill">FOUNDATION HONOR</span>
+              </div>
+              <div class="award-body">
+                <div class="award-icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#E8C875" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                </div>
+                <h3 class="award-name">Star of Excellence Award</h3>
+                <p class="award-location">National Integrity Cultural Academy</p>
+                <div class="award-categories">
+                  <span class="cat-pill">Ethical IT Innovation</span>
+                  <span class="cat-pill">Digital Growth</span>
+                </div>
+              </div>
+              <div class="award-footer">
+                <span class="verified-tag">✓ VERIFIED CITATION</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. TRUST PILLARS SECTION -->
+      <section class="trust-section" id="about">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// WHY LEADERS CHOOSE US</span>
+          </div>
+          <h2 class="section-title">BUILT FOR BUSINESS. <span class="metallic-gold-text">ENGINEERED FOR GROWTH.</span></h2>
+          <p class="section-desc">Six fundamental pillars guaranteeing enterprise delivery, zero downtime surprises, and compounding ROI.</p>
+
+          <div class="trust-grid">
+            <div class="trust-card">
+              <div class="trust-num">01</div>
+              <h3 class="trust-title">Result-Driven Strategy</h3>
+              <p class="trust-text">Every line of code and marketing funnel is mathematically mapped to customer acquisition and measurable revenue growth.</p>
+            </div>
+            <div class="trust-card">
+              <div class="trust-num">02</div>
+              <h3 class="trust-title">Expert Technology Team</h3>
+              <p class="trust-text">Senior full-stack architects, Three.js 3D specialists, and growth engineers with deep cross-domain expertise.</p>
+            </div>
+            <div class="trust-card">
+              <div class="trust-num">03</div>
+              <h3 class="trust-title">Design-Led Development</h3>
+              <p class="trust-text">Bespoke luxury aesthetics, sub-pixel spatial rhythm, and fluid micro-interactions that captivate executive audiences.</p>
+            </div>
+            <div class="trust-card">
+              <div class="trust-num">04</div>
+              <h3 class="trust-title">Transparent Process</h3>
+              <p class="trust-text">Clear sprint deliverables, weekly live demonstration staging, direct engineer communication, and zero hidden costs.</p>
+            </div>
+            <div class="trust-card">
+              <div class="trust-num">05</div>
+              <h3 class="trust-title">Long-Term Partnership</h3>
+              <p class="trust-text">We don't abandon you after launch. We serve as continuous technology partners powering iterative feature scaling.</p>
+            </div>
+            <div class="trust-card">
+              <div class="trust-num">06</div>
+              <h3 class="trust-title">Continuous Support</h3>
+              <p class="trust-text">24/7 proactive security monitoring, real-time performance optimization, and guaranteed SLA incident resolution.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. DIGITAL CAPABILITY UNIVERSE (SERVICES) -->
+      <section class="services-section" id="services">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// DIGITAL CAPABILITY UNIVERSE</span>
+          </div>
+          <h2 class="section-title">ENGINEERING CAPABILITIES</h2>
+          <p class="section-desc">A unified spectrum of advanced digital capabilities tailored for modern scale.</p>
+
+          <div class="services-universe-grid">
+            <!-- 1. Web Development -->
+            <div class="service-box" data-service="web">
+              <div class="service-header">
+                <span class="service-id">CAPABILITY // 01</span>
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+              </div>
+              <h3 class="service-name">Web Development</h3>
+              <p class="service-summary">Ultra-responsive full-stack web applications, Server Components, Headless architectures, and lightning-fast APIs.</p>
+              <div class="service-tags">
+                <span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span>
+              </div>
+              <button class="service-cta-btn" onclick="openServiceModal('web')">EXPLORE WORKFLOW →</button>
+            </div>
+
+            <!-- 2. Mobile App Development -->
+            <div class="service-box" data-service="mobile">
+              <div class="service-header">
+                <span class="service-id">CAPABILITY // 02</span>
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                </div>
+              </div>
+              <h3 class="service-name">Mobile App Development</h3>
+              <p class="service-summary">Intuitive native iOS and Android experiences built with cross-platform efficiency and hardware acceleration.</p>
+              <div class="service-tags">
+                <span>React Native</span><span>Flutter</span><span>iOS</span><span>Android</span>
+              </div>
+              <button class="service-cta-btn" onclick="openServiceModal('mobile')">EXPLORE WORKFLOW →</button>
+            </div>
+
+            <!-- 3. Digital Marketing -->
+            <div class="service-box" data-service="marketing">
+              <div class="service-header">
+                <span class="service-id">CAPABILITY // 03</span>
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><path d="M23 6l-9.5 9.5-5-5L1 18"></path><polyline points="17 6 23 6 23 12"></polyline></svg>
+                </div>
+              </div>
+              <h3 class="service-name">Digital Marketing</h3>
+              <p class="service-summary">High-ROI performance advertising, Meta & Google Ads optimization, and multi-channel campaign architectures.</p>
+              <div class="service-tags">
+                <span>Google Ads</span><span>Meta Ads</span><span>ROI Analytics</span><span>Lead Gen</span>
+              </div>
+              <button class="service-cta-btn" onclick="openServiceModal('marketing')">EXPLORE WORKFLOW →</button>
+            </div>
+
+            <!-- 4. UI/UX Design -->
+            <div class="service-box" data-service="design">
+              <div class="service-header">
+                <span class="service-id">CAPABILITY // 04</span>
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path></svg>
+                </div>
+              </div>
+              <h3 class="service-name">UI/UX Design</h3>
+              <p class="service-summary">Luxury human-centric interfaces, design systems, interactive prototypes, and behavioral engagement studies.</p>
+              <div class="service-tags">
+                <span>Figma</span><span>Design Systems</span><span>Motion UX</span><span>Wireframing</span>
+              </div>
+              <button class="service-cta-btn" onclick="openServiceModal('design')">EXPLORE WORKFLOW →</button>
+            </div>
+
+            <!-- 5. E-Commerce -->
+            <div class="service-box" data-service="ecommerce">
+              <div class="service-header">
+                <span class="service-id">CAPABILITY // 05</span>
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                </div>
+              </div>
+              <h3 class="service-name">E-Commerce</h3>
+              <p class="service-summary">Scalable global storefronts with seamless payment gateways, cart optimization, and inventory integrations.</p>
+              <div class="service-tags">
+                <span>WooCommerce</span><span>Shopify</span><span>Stripe</span><span>Headless</span>
+              </div>
+              <button class="service-cta-btn" onclick="openServiceModal('ecommerce')">EXPLORE SERVICE →</button>
+            </div>
+
+            <!-- 6. 3D Modeling -->
+            <div class="service-box" data-service="3d">
+              <div class="service-header">
+                <span class="service-id">CAPABILITY // 06</span>
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                </div>
+              </div>
+              <h3 class="service-name">3D Modeling</h3>
+              <p class="service-summary">Interactive in-browser 3D product configurations, metallic material shaders, and cinematic brand storytelling.</p>
+              <div class="service-tags">
+                <span>Three.js</span><span>WebGL</span><span>Blender</span><span>Shaders</span>
+              </div>
+              <button class="service-cta-btn" onclick="openServiceModal('3d')">EXPLORE SERVICE →</button>
+            </div>
+
+            <!-- 7. AR/VR -->
+            <div class="service-box" data-service="arvr">
+              <div class="service-header">
+                <span class="service-id">CAPABILITY // 07</span>
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><path d="M2 12h20M2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6M2 12V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6"></path><circle cx="7" cy="12" r="3"></circle><circle cx="17" cy="12" r="3"></circle></svg>
+                </div>
+              </div>
+              <h3 class="service-name">AR/VR</h3>
+              <p class="service-summary">Immersive spatial experiences, WebXR walkthroughs, and augmented reality customer interactions.</p>
+              <div class="service-tags">
+                <span>WebXR</span><span>Three.js</span><span>Spatial UX</span><span>ARKit/ARCore</span>
+              </div>
+              <button class="service-cta-btn" onclick="openServiceModal('arvr')">EXPLORE SERVICE →</button>
+            </div>
+
+            <!-- 8. Custom Software Development -->
+            <div class="service-box" data-service="custom">
+              <div class="service-header">
+                <span class="service-id">CAPABILITY // 08</span>
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><circle cx="12" cy="12" r="2"></circle></svg>
+                </div>
+              </div>
+              <h3 class="service-name">Custom Software Development</h3>
+              <p class="service-summary">Tailored enterprise systems, API ecosystems, automated business workflows, and robust cloud microservices.</p>
+              <div class="service-tags">
+                <span>Node.js</span><span>TypeScript</span><span>PostgreSQL</span><span>Microservices</span>
+              </div>
+              <button class="service-cta-btn" onclick="openServiceModal('custom')">EXPLORE SERVICE →</button>
+            </div>
+
+            <!-- 9. WordPress / WooCommerce -->
+            <div class="service-box" data-service="wordpress">
+              <div class="service-header">
+                <span class="service-id">CAPABILITY // 09</span>
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 0-7.07 17.07L12 2z"></path><path d="M16 8l-4 8-2-4"></path></svg>
+                </div>
+              </div>
+              <h3 class="service-name">WordPress / WooCommerce</h3>
+              <p class="service-summary">Bespoke performance WordPress architectures, custom Gutenberg blocks, and scalable WooCommerce storefronts.</p>
+              <div class="service-tags">
+                <span>WordPress</span><span>WooCommerce</span><span>PHP</span><span>REST API</span>
+              </div>
+              <button class="service-cta-btn" onclick="openServiceModal('wordpress')">EXPLORE SERVICE →</button>
+            </div>
+
+            <!-- 10. SEO / SMM -->
+            <div class="service-box" data-service="seo">
+              <div class="service-header">
+                <span class="service-id">CAPABILITY // 10</span>
+                <div class="service-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><path d="M11 8v6M8 11h6"></path></svg>
+                </div>
+              </div>
+              <h3 class="service-name">SEO / SMM</h3>
+              <p class="service-summary">Technical organic search supremacy, social media growth management, and conversion-focused multi-channel campaigns.</p>
+              <div class="service-tags">
+                <span>Technical SEO</span><span>SMM</span><span>Social Growth</span><span>Schema</span>
+              </div>
+              <button class="service-cta-btn" onclick="openServiceModal('seo')">EXPLORE SERVICE →</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. RIYADVI GUARDIAN (SIGNATURE PRIORITY FEATURE) -->
+      <section class="guardian-section" id="guardian">
+        <div class="guardian-backdrop-glow"></div>
+        <div class="section-container">
+          
+          <div class="guardian-header-block">
+            <span class="guardian-badge-tag">// PROPRIETARY BUSINESS GROWTH CONCEPT</span>
+            <h2 class="guardian-headline">RIYADVI GUARDIAN</h2>
+            <p class="guardian-subheadline">YOUR BUSINESS GROWTH PROTECTOR.</p>
+            <p class="guardian-lead">
+              Riyadvi Guardian isn't just software—it is an autonomous business growth ecosystem designed to defend your market position, eliminate lead leakages, and systematically scale qualified revenue.
+            </p>
+          </div>
+
+          <!-- 3D Interactive Guardian Shield Visual & Telemetry Simulator -->
+          <div class="guardian-interactive-stage">
+            <div class="shield-container" id="guardian-shield-container">
+              <div class="shield-3d-visual">
+                <div class="shield-outer-ring"></div>
+                <div class="shield-core-emblem">
+                  <svg viewBox="0 0 100 120" class="shield-svg">
+                    <path d="M50 5 L90 20 L90 65 Q90 95 50 115 Q10 95 10 65 L10 20 Z" fill="url(#goldGrad)" stroke="#F4D36B" stroke-width="2.5"></path>
+                    <path d="M50 18 L78 30 L78 62 Q78 84 50 100 Q22 84 22 62 L22 30 Z" fill="#0A0A0A" stroke="#D4AF37" stroke-width="1.5"></path>
+                    <circle cx="50" cy="55" r="14" fill="url(#coreGlow)"></circle>
+                    <defs>
+                      <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#F4D36B"/>
+                        <stop offset="50%" stop-color="#D4AF37"/>
+                        <stop offset="100%" stop-color="#8a6d1e"/>
+                      </linearGradient>
+                      <radialGradient id="coreGlow">
+                        <stop offset="0%" stop-color="#FFFFFF"/>
+                        <stop offset="50%" stop-color="#F4D36B"/>
+                        <stop offset="100%" stop-color="transparent"/>
+                      </radialGradient>
+                    </defs>
+                  </svg>
+                </div>
+
+                <!-- Orbiting Marketing & Analytics Nodes -->
+                <div class="orbit-node node-1" title="Website Traffic"><span class="node-icon">📈</span><span class="node-text">Traffic</span></div>
+                <div class="orbit-node node-2" title="Marketing Signals"><span class="node-icon">🎯</span><span class="node-text">Signals</span></div>
+                <div class="orbit-node node-3" title="Lead Capture"><span class="node-icon">⚡</span><span class="node-text">Leads</span></div>
+                <div class="orbit-node node-4" title="Conversion Engine"><span class="node-icon">💎</span><span class="node-text">Conversion</span></div>
+                <div class="orbit-node node-5" title="Growth Analytics"><span class="node-icon">🛡️</span><span class="node-text">Analytics</span></div>
+              </div>
+            </div>
+
+            <!-- Live Growth Graph & Real-Time Sequence Display -->
+            <div class="guardian-telemetry-panel">
+              <div class="panel-header">
+                <span class="panel-dot"></span>
+                <span>LIVE GUARDIAN TELEMETRY MONITOR</span>
+                <span class="verified-indicator">ACTIVE CAMPAIGN</span>
+              </div>
+              
+              <div class="telemetry-sequence-steps">
+                <div class="step-chip active" id="chip-1"><span class="step-n">1</span> Visitor Enters</div>
+                <div class="step-chip active" id="chip-2"><span class="step-n">2</span> Data Analyzed</div>
+                <div class="step-chip active" id="chip-3"><span class="step-n">3</span> Signals Connect</div>
+                <div class="step-chip active" id="chip-4"><span class="step-n">4</span> Leads Appear</div>
+                <div class="step-chip active" id="chip-5"><span class="step-n">5</span> Conversion Scale</div>
+              </div>
+
+              <!-- Animated Growth Graph -->
+              <div class="growth-chart-wrap">
+                <div class="chart-y-axis">
+                  <span>+320%</span>
+                  <span>+200%</span>
+                  <span>+100%</span>
+                  <span>0%</span>
+                </div>
+                <div class="chart-svg-box">
+                  <svg viewBox="0 0 400 150" class="chart-svg">
+                    <path d="M 0 130 Q 80 120, 150 90 T 280 40 T 400 15" fill="none" stroke="url(#lineGrad)" stroke-width="4" class="growth-path"></path>
+                    <defs>
+                      <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#D4AF37"/>
+                        <stop offset="100%" stop-color="#00FFCC"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="social-proof-metric">
+                <span class="sp-big-num">100+</span>
+                <div class="sp-desc">
+                  <strong>VERIFIED LEADS GENERATED</strong>
+                  <p>The Riyadvi Guardian methodology is actively deployed across current client acquisition pipelines.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. RIYADVI GUARDIAN SALES FUNNEL & SOCIAL PROOF (PDF SECTIONS 16, 17, 18) -->
+      <section class="guardian-funnel-section" id="guardian-funnel">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// 04 — DIFFERENTIATION & CONVERSION</span>
+          </div>
+          <h2 class="section-title">THE 6-STAGE GUARDIAN CONVERSION FUNNEL</h2>
+          <p class="section-desc">A closed-loop growth architecture engineered to intercept high-intent enterprise buyers and turn marketing traffic into scalable revenue.</p>
+
+          <!-- 6-Stage Proprietary Sales Funnel Breakdown -->
+          <div class="sales-funnel-container">
+            <div class="funnel-steps-grid">
+              <div class="funnel-step-card">
+                <div class="funnel-step-tag">STAGE 01</div>
+                <h4 class="funnel-step-name">ATTRACT</h4>
+                <p class="funnel-step-desc">Targeted SEO, Google Ads, Meta Ads, and content strategies engineered to intercept high-intent buyers.</p>
+              </div>
+              <div class="funnel-step-arrow">→</div>
+
+              <div class="funnel-step-card">
+                <div class="funnel-step-tag">STAGE 02</div>
+                <h4 class="funnel-step-name">ENGAGE</h4>
+                <p class="funnel-step-desc">Frictionless 3D interaction, intuitive UI, and clear value messaging that keeps attention locked.</p>
+              </div>
+              <div class="funnel-step-arrow">→</div>
+
+              <div class="funnel-step-card">
+                <div class="funnel-step-tag">STAGE 03</div>
+                <h4 class="funnel-step-name">CAPTURE</h4>
+                <p class="funnel-step-desc">High-converting landing pages, WhatsApp click-to-chat, and intelligent form verification.</p>
+              </div>
+              <div class="funnel-step-arrow">→</div>
+
+              <div class="funnel-step-card">
+                <div class="funnel-step-tag">STAGE 04</div>
+                <h4 class="funnel-step-name">NURTURE</h4>
+                <p class="funnel-step-desc">Automated email sequences, SMS notifications, and retargeting workflows keeping leads warm.</p>
+              </div>
+              <div class="funnel-step-arrow">→</div>
+
+              <div class="funnel-step-card">
+                <div class="funnel-step-tag">STAGE 05</div>
+                <h4 class="funnel-step-name">CONVERT</h4>
+                <p class="funnel-step-desc">Seamless checkout, frictionless consultation bookings, and CRM auto-dispatch to sales teams.</p>
+              </div>
+              <div class="funnel-step-arrow">→</div>
+
+              <div class="funnel-step-card gold-border">
+                <div class="funnel-step-tag">STAGE 06</div>
+                <h4 class="funnel-step-name">GROW</h4>
+                <p class="funnel-step-desc">Cohort retention analytics, LTV expansion, and multi-region scaling protocols.</p>
+              </div>
+            </div>
+
+            <div class="guardian-action-bar">
+              <div class="guardian-headline-cta">
+                <strong>YOUR BUSINESS DOESN'T NEED MORE RANDOM MARKETING.</strong>
+                <span>IT NEEDS A GROWTH SYSTEM.</span>
+              </div>
+              <a href="#estimator" class="btn-primary-gold">GET MY FREE GROWTH CONSULTATION</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 8. CASE STUDIES & PORTFOLIO -->
+      <section class="portfolio-section" id="portfolio">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// PROVEN VALUE CREATION</span>
+          </div>
+          <h2 class="section-title">IMMERSIVE CASE STUDIES</h2>
+          <p class="section-desc">Real businesses. Verified engineering. Measurable commercial outcomes.</p>
+
+          <div class="portfolio-cards-list">
+            <!-- Case Study 1: Studio 11 -->
+            <div class="case-card">
+              <div class="case-info">
+                <div class="case-client-badge">
+                  <img src="assets/studio11-logo.png" alt="Studio 11" class="client-logo-thumb">
+                  <span>RETAIL & SALON CHAIN</span>
+                </div>
+                <h3 class="case-title">Studio 11 Multi-Location Booking & SMM Engine</h3>
+                <p class="case-summary">
+                  Designed and engineered a centralized multi-city appointment scheduling system paired with hyper-local social media performance marketing.
+                </p>
+                <div class="case-metrics-row">
+                  <div class="case-metric">
+                    <span class="cm-val">+140%</span>
+                    <span class="cm-lbl">ONLINE BOOKINGS</span>
+                  </div>
+                  <div class="case-metric">
+                    <span class="cm-val">4.8★</span>
+                    <span class="cm-lbl">CUSTOMER RATING</span>
+                  </div>
+                  <div class="case-metric">
+                    <span class="cm-val">2.8x</span>
+                    <span class="cm-lbl">ROAS ON ADS</span>
+                  </div>
+                </div>
+                <div class="case-tags">
+                  <span>Web Platform</span><span>React</span><span>Social Media Marketing</span><span>Local SEO</span>
+                </div>
+              </div>
+              <div class="case-visual">
+                <div class="case-frame">
+                  <div class="case-screen-mockup mockup-studio11">
+                    <div class="mockup-header-bar"><span class="m-dot"></span><span class="m-dot"></span><span class="m-dot"></span></div>
+                    <div class="mockup-body-preview">
+                      <h4>STUDIO 11 SALON & SPA</h4>
+                      <p>Instant Stylist Booking • Multi-City Location Engine</p>
+                      <span class="status-pill-green">● Live Platform</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Case Study 2: Puratap Australia -->
+            <div class="case-card reverse">
+              <div class="case-info">
+                <div class="case-client-badge">
+                  <img src="assets/puratap.png" alt="Puratap" class="client-logo-thumb">
+                  <span>AUSTRALIA • E-COMMERCE</span>
+                </div>
+                <h3 class="case-title">Puratap Australia High-Performance Commerce & IoT</h3>
+                <p class="case-summary">
+                  Transformed the leading Australian water filtration manufacturer's digital storefront into a sub-second headless commerce application with automated subscription filter renewals.
+                </p>
+                <div class="case-metrics-row">
+                  <div class="case-metric">
+                    <span class="cm-val">+85%</span>
+                    <span class="cm-lbl">DIRECT CHECKOUTS</span>
+                  </div>
+                  <div class="case-metric">
+                    <span class="cm-val">&lt; 0.8s</span>
+                    <span class="cm-lbl">PAGE LOAD SPEED</span>
+                  </div>
+                  <div class="case-metric">
+                    <span class="cm-val">99.98%</span>
+                    <span class="cm-lbl">UPTIME</span>
+                  </div>
+                </div>
+                <div class="case-tags">
+                  <span>E-Commerce</span><span>Next.js</span><span>Stripe Gateway</span><span>Australia Cloud</span>
+                </div>
+              </div>
+              <div class="case-visual">
+                <div class="case-frame">
+                  <div class="case-screen-mockup mockup-puratap">
+                    <div class="mockup-header-bar"><span class="m-dot"></span><span class="m-dot"></span><span class="m-dot"></span></div>
+                    <div class="mockup-body-preview">
+                      <h4>PURATAP WATER PURIFIERS</h4>
+                      <p>Sub-Second E-Commerce • Automated Filter Subscription Engine</p>
+                      <span class="status-pill-green">● Australia Market Active</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Case Study 3: TNG Real Estate -->
+            <div class="case-card">
+              <div class="case-info">
+                <div class="case-client-badge">
+                  <img src="assets/TNG.png" alt="TNG Global" class="client-logo-thumb">
+                  <span>LUXURY REAL ESTATE</span>
+                </div>
+                <h3 class="case-title">TNG Global Immersive 3D Property Showcase</h3>
+                <p class="case-summary">
+                  Engineered an interactive 3D architectural viewer enabling prospective international investors to explore luxury real estate developments with spatial precision.
+                </p>
+                <div class="case-metrics-row">
+                  <div class="case-metric">
+                    <span class="cm-val">3.2x</span>
+                    <span class="cm-lbl">INQUIRY CONVERSION</span>
+                  </div>
+                  <div class="case-metric">
+                    <span class="cm-val">4.5 min</span>
+                    <span class="cm-lbl">AVG DWELL TIME</span>
+                  </div>
+                  <div class="case-metric">
+                    <span class="cm-val">100%</span>
+                    <span class="cm-lbl">INTERACTIVE 3D</span>
+                  </div>
+                </div>
+                <div class="case-tags">
+                  <span>Three.js 3D</span><span>Spatial Tours</span><span>Lead Qualification</span><span>WebGL</span>
+                </div>
+              </div>
+              <div class="case-visual">
+                <div class="case-frame">
+                  <div class="case-screen-mockup mockup-tng">
+                    <div class="mockup-header-bar"><span class="m-dot"></span><span class="m-dot"></span><span class="m-dot"></span></div>
+                    <div class="mockup-body-preview">
+                      <h4>TNG LUXURY DEVELOPMENTS</h4>
+                      <p>WebGL Interactive Property Navigator • High Net Worth Lead Funnel</p>
+                      <span class="status-pill-green">● Live Showcase</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. VERIFIED RESULTS & COMMERCIAL METRICS (PDF SECTION 25) -->
+      <section class="results-section" id="results">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// 05 — PROOF & METRICS</span>
+          </div>
+          <h2 class="section-title">MEASURABLE COMMERCIAL IMPACT</h2>
+          <p class="section-desc">Production-verified business metrics and enterprise throughput benchmarks delivered across client engagements.</p>
+
+          <div class="results-dashboard-grid">
+            <div class="result-metric-card">
+              <div class="rm-badge">VERIFIED 2021–2026</div>
+              <span class="stat-big counter-val" data-target="80">80+</span>
+              <h3 class="rm-title">Delivered Platforms</h3>
+              <p class="rm-desc">Enterprise web applications, mobile platforms, and WebGL architectures launched globally.</p>
+            </div>
+
+            <div class="result-metric-card">
+              <div class="rm-badge">CLIENT RETENTION</div>
+              <span class="stat-big counter-val" data-target="50">50+</span>
+              <h3 class="rm-title">Recurring Clients</h3>
+              <p class="rm-desc">High-trust multi-year retainer relationships and active enterprise SLA partners.</p>
+            </div>
+
+            <div class="result-metric-card">
+              <div class="rm-badge">CAMPAIGN ACQUISITION</div>
+              <span class="stat-big counter-val" data-target="100">100+</span>
+              <h3 class="rm-title">Verified Inbound Leads</h3>
+              <p class="rm-desc">Systematically generated via the proprietary Riyadvi Guardian growth framework.</p>
+            </div>
+
+            <div class="result-metric-card">
+              <div class="rm-badge">CONVERSION MULTIPLIER</div>
+              <span class="stat-big">3.2x</span>
+              <h3 class="rm-title">Average Conversion Lift</h3>
+              <p class="rm-desc">Documented lift in client inquiry rates post-redesign and full-funnel optimization.</p>
+            </div>
+          </div>
+
+          <div class="telemetry-bar-card">
+            <div class="tb-header">
+              <span class="tb-tag">// PRODUCTION TELEMETRY BENCHMARKS</span>
+              <span class="tb-status">SUB-SECOND AUDITED SLA</span>
+            </div>
+            <div class="tb-grid">
+              <div class="tb-metric-item">
+                <div class="tb-label-row">
+                  <span>Largest Contentful Paint (LCP)</span>
+                  <strong>&lt; 1.1s</strong>
+                </div>
+                <div class="tb-bar"><div class="tb-fill" style="width: 94%;"></div></div>
+              </div>
+              <div class="tb-metric-item">
+                <div class="tb-label-row">
+                  <span>First Input Delay (FID) / INP</span>
+                  <strong>&lt; 35ms</strong>
+                </div>
+                <div class="tb-bar"><div class="tb-fill" style="width: 97%;"></div></div>
+              </div>
+              <div class="tb-metric-item">
+                <div class="tb-label-row">
+                  <span>Cumulative Layout Shift (CLS)</span>
+                  <strong>0.00</strong>
+                </div>
+                <div class="tb-bar"><div class="tb-fill" style="width: 100%;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. INDUSTRY ECOSYSTEM EXPLORER -->
+      <section class="industries-section" id="industries">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// DOMAIN EXCELLENCE</span>
+          </div>
+          <h2 class="section-title">INDUSTRY ECOSYSTEMS</h2>
+          <p class="section-desc">Specialized technological architectures adapted to industry-specific compliance, workflows, and customer journeys.</p>
+
+          <div class="industry-tabs-bar" id="industry-tabs">
+            <button class="ind-tab active" data-ind="realestate">Real Estate</button>
+            <button class="ind-tab" data-ind="healthcare">Healthcare</button>
+            <button class="ind-tab" data-ind="ecommerce">E-Commerce</button>
+            <button class="ind-tab" data-ind="education">Education</button>
+            <button class="ind-tab" data-ind="sports">Sports & Fitness</button>
+            <button class="ind-tab" data-ind="startups">Startups & Scaleups</button>
+            <button class="ind-tab" data-ind="enterprise">Enterprise</button>
+          </div>
+
+          <div class="industry-card-display" id="industry-display">
+            <div class="ind-details">
+              <span class="ind-category-tag" id="ind-cat">SECTOR FOCUS // REAL ESTATE</span>
+              <h3 class="ind-heading" id="ind-title">High-Impact Spatial Visualization & Lead Capture</h3>
+              <p class="ind-description" id="ind-desc">
+                From interactive WebGL 3D property tours to automated WhatsApp lead qualification funnels, we help real estate developers sell premium developments faster.
+              </p>
+              <div class="ind-bullets" id="ind-bullets">
+                <div class="ind-bullet-item">✓ 3D Virtual Walkthroughs & Interactive Floorplans</div>
+                <div class="ind-bullet-item">✓ CRM Integration (Salesforce, HubSpot, LeadSquared)</div>
+                <div class="ind-bullet-item">✓ Multi-Channel Meta & Google Real Estate Ad Funnels</div>
+              </div>
+              <a href="#estimator" class="btn-primary-gold mt-2">DEPLOY FOR MY INDUSTRY</a>
+            </div>
+            <div class="ind-stats-box" id="ind-stats">
+              <div class="ind-stat-item">
+                <span class="is-num">3.2x</span>
+                <span class="is-label">Lead Conversion Jump</span>
+              </div>
+              <div class="ind-stat-item">
+                <span class="is-num">&lt; 2s</span>
+                <span class="is-label">Instant Brochure Delivery</span>
+              </div>
+              <div class="ind-stat-item">
+                <span class="is-num">100%</span>
+                <span class="is-label">GDPR / RERA Compliance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. COMPANY STORY & PROCESS (PDF SECTION 22) -->
+      <section class="story-section" id="story">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// 06 — STRATEGIC METHODOLOGY</span>
+          </div>
+          <h2 class="section-title">WE DON'T JUST DELIVER PROJECTS.<br><span class="metallic-gold-text">WE BUILD DIGITAL ADVANTAGE.</span></h2>
+          <p class="section-desc">Our proprietary 6-phase software and growth engineering lifecycle designed to turn complex business requirements into measurable commercial impact.</p>
+
+          <div class="process-steps-grid">
+            <div class="process-step-card">
+              <span class="ps-number">01</span>
+              <h3 class="ps-title">DISCOVER</h3>
+              <p class="ps-desc">Deep architecture audit, user journey mapping, market opportunity analysis, and commercial KPI alignment.</p>
+            </div>
+
+            <div class="process-step-card">
+              <span class="ps-number">02</span>
+              <h3 class="ps-title">STRATEGIZE</h3>
+              <p class="ps-desc">Tailored technology stack selection, system topology, database design, and conversion funnel blueprint.</p>
+            </div>
+
+            <div class="process-step-card">
+              <span class="ps-number">03</span>
+              <h3 class="ps-title">DESIGN</h3>
+              <p class="ps-desc">High-fidelity spatial UI/UX design, accessible component hierarchies, and interactive 3D WebGL prototypes.</p>
+            </div>
+
+            <div class="process-step-card">
+              <span class="ps-number">04</span>
+              <h3 class="ps-title">BUILD</h3>
+              <p class="ps-desc">Strict TypeScript clean architecture, sub-millisecond execution, automated test coverage, and modular APIs.</p>
+            </div>
+
+            <div class="process-step-card">
+              <span class="ps-number">05</span>
+              <h3 class="ps-title">LAUNCH</h3>
+              <p class="ps-desc">Zero-downtime CI/CD containerized deployments, edge CDN caching, and telemetry validation.</p>
+            </div>
+
+            <div class="process-step-card gold-highlight">
+              <span class="ps-number">06</span>
+              <h3 class="ps-title">GROW</h3>
+              <p class="ps-desc">Autonomous Guardian growth loops, conversion rate optimization, automated lead tracking, and LTV scaling.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. CINEMATIC TIMELINE (PDF SECTION 21) -->
+      <section class="timeline-section" id="timeline">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// 06 — VERIFIED MILESTONES</span>
+          </div>
+          <h2 class="section-title">OUR JOURNEY: 2021 TO 2026</h2>
+          <p class="section-desc">From our founding foundation to international global awards and autonomous enterprise growth platforms.</p>
+
+          <div class="timeline-tree">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-item">
+              <div class="tl-node"></div>
+              <div class="tl-year">2021</div>
+              <div class="tl-card">
+                <h4>Company Foundation & Star of Excellence</h4>
+                <p>Riyadvi Software Technologies launched with a focus on custom IT solutions and web architectures. Awarded the 'Star of Excellence' by the National Integrity Cultural Academy for ethical business innovation.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="tl-node"></div>
+              <div class="tl-year">2022</div>
+              <div class="tl-card">
+                <h4>Service & Capability Expansion</h4>
+                <p>Scaled offerings into native mobile application development, full-funnel digital marketing, and complex enterprise database systems.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="tl-node"></div>
+              <div class="tl-year">2023</div>
+              <div class="tl-card">
+                <h4>International Market Expansion (Australia & APAC)</h4>
+                <p>Expanded client footprint globally, deploying high-throughput digital platforms for prominent Australian e-commerce and commercial brands.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="tl-node"></div>
+              <div class="tl-year">2024</div>
+              <div class="tl-card">
+                <h4>Global Recognition & AR/VR Integration</h4>
+                <p>Integrated WebGL 3D and spatial AR/VR capabilities into production systems. Surpassed 80+ delivered enterprise projects across 3 continents.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="tl-node"></div>
+              <div class="tl-year">2025</div>
+              <div class="tl-card gold-border">
+                <h4>DesignRush & TechBehemoths Global Awards (Berlin)</h4>
+                <p>Named Top Web Development Company 2025 by DesignRush and earned TechBehemoths Global Awards recognition in Berlin for ReactJS, WordPress, and SMM excellence.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="tl-node active"></div>
+              <div class="tl-year highlight">2026</div>
+              <div class="tl-card gold-border glow">
+                <h4>Riyadvi Guardian Proprietary Growth System</h4>
+                <p>Pioneering the Riyadvi Guardian framework: uniting autonomous AI, real-time conversion monitoring, and precision engineering into a self-sustaining client revenue engine.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. TECHNOLOGY ECOSYSTEM (PDF SECTION 23) -->
+      <section class="tech-ecosystem-section" id="tech-ecosystem">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// TECHNICAL PROFICIENCY</span>
+          </div>
+          <h2 class="section-title">THE CONNECTED TECHNOLOGY STACK</h2>
+          <p class="section-desc">Production-ready, battle-tested modern stacks powering sub-millisecond execution and infinite horizontal elasticity.</p>
+
+          <div class="tech-nodes-cloud">
+            <div class="node-pill highlight"><span>⚡ React 19</span></div>
+            <div class="node-pill highlight"><span>▲ Next.js</span></div>
+            <div class="node-pill"><span>🟢 Node.js</span></div>
+            <div class="node-pill"><span>🔷 TypeScript</span></div>
+            <div class="node-pill"><span>🎨 Three.js / WebGL</span></div>
+            <div class="node-pill"><span>📱 React Native</span></div>
+            <div class="node-pill"><span>🦋 Flutter</span></div>
+            <div class="node-pill"><span>🧠 Autonomous AI</span></div>
+            <div class="node-pill"><span>🐳 Docker & AWS</span></div>
+            <div class="node-pill"><span>🌐 WordPress / Headless</span></div>
+            <div class="node-pill"><span>🛒 WooCommerce</span></div>
+            <div class="node-pill"><span>🔍 Technical SEO</span></div>
+            <div class="node-pill"><span>📊 Meta & Google Ads</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13. AI & FUTURE TECHNOLOGY (PDF SECTION 24) -->
+      <section class="ai-future-section" id="ai-future">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// 06 — FUTURE HORIZONS</span>
+          </div>
+          <h2 class="section-title">THE NEXT GENERATION OF DIGITAL BUSINESS</h2>
+          <p class="section-desc">How Riyadvi architects intelligent autonomy, spatial interaction, and predictive computing for forward-thinking enterprises.</p>
+
+          <div class="ai-future-grid">
+            <div class="ai-future-card">
+              <div class="af-icon">🧠</div>
+              <h3 class="af-title">Autonomous AI Agents</h3>
+              <p class="af-desc">Retrieval-augmented conversational bots and workflow agents that automate sales qualification and 24/7 client triage.</p>
+            </div>
+
+            <div class="ai-future-card">
+              <div class="af-icon">📈</div>
+              <h3 class="af-title">Predictive Revenue Analytics</h3>
+              <p class="af-desc">Real-time cohort telemetry forecasting pipeline velocity and eliminating customer churn before it occurs.</p>
+            </div>
+
+            <div class="ai-future-card">
+              <div class="af-icon">✨</div>
+              <h3 class="af-title">Intelligent Adaptive UX</h3>
+              <p class="af-desc">Dynamic web interfaces that personalize layouts, messaging, and CTAs in real-time according to visitor intent.</p>
+            </div>
+
+            <div class="ai-future-card">
+              <div class="af-icon">🌐</div>
+              <h3 class="af-title">Spatial 3D & WebGL</h3>
+              <p class="af-desc">Photorealistic interactive product customizers and architectural walkthroughs directly in standard browsers.</p>
+            </div>
+
+            <div class="ai-future-card">
+              <div class="af-icon">👓</div>
+              <h3 class="af-title">WebXR & Augmented Reality</h3>
+              <p class="af-desc">Zero-install mobile AR enabling retail and industrial customers to visualize products in their physical environment.</p>
+            </div>
+
+            <div class="ai-future-card">
+              <div class="af-icon">⚡</div>
+              <h3 class="af-title">Omnichannel Marketing Loops</h3>
+              <p class="af-desc">Automated attribution pipelines connecting search ads, social campaigns, and CRM conversions into one unified telemetry stream.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. CLIENT LOGOS & TESTIMONIALS -->
+      <section class="testimonials-section" id="testimonials">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// REAL CLIENT IMPACT</span>
+          </div>
+          <h2 class="section-title">TRUSTED BY AMBITIOUS BRANDS</h2>
+          <p class="section-desc">Verified 5-Star feedback from business founders and corporate partners.</p>
+
+          <div class="client-logos-row">
+            <div class="client-logo-item"><img src="assets/studio11-logo.png" alt="Studio 11"></div>
+            <div class="client-logo-item"><img src="assets/puratap.png" alt="Puratap Australia"></div>
+            <div class="client-logo-item"><img src="assets/TNG.png" alt="TNG Global"></div>
+            <div class="client-logo-item google-rated">
+              <img src="assets/Google.png" alt="Google Reviews" class="g-icon">
+              <div class="g-text">
+                <div class="g-stars">★★★★★</div>
+                <span>5.0 Star Rating on Google</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonials-grid">
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-quote">"Best website development company.. they always focus on 100 percentage customer satisfaction. Good service."</p>
+              <div class="testi-author">
+                <strong>Mohammed Yehraz</strong>
+                <span>Verified Google Review</span>
+              </div>
+            </div>
+
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-quote">"One of the best company for app development. Very satisfied with their work for my startup. Thank you @riyadvi."</p>
+              <div class="testi-author">
+                <strong>Geetha Lakshmi Selvaraj</strong>
+                <span>Startup Founder</span>
+              </div>
+            </div>
+
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-quote">"Strongly recommend Riyadvi Software Technology. They are providing good application design, support and they have very skilled employees who are familiar with AR & VR."</p>
+              <div class="testi-author">
+                <strong>Mohamed Faris</strong>
+                <span>Enterprise Client</span>
+              </div>
+            </div>
+
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-quote">"They are quick & easy to deal with ... Service Team helped me get exactly what I was looking for .."</p>
+              <div class="testi-author">
+                <strong>Paramaguru Sriram (Guru)</strong>
+                <span>Business Client</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13. INTERACTIVE 7-STEP PROJECT ESTIMATOR -->
+      <section class="estimator-section" id="estimator">
+        <div class="section-container">
+          <div class="section-tag-row">
+            <span class="gold-badge">// PROJECT SCOPING WIZARD</span>
+          </div>
+          <h2 class="section-title">CALCULATE YOUR PROJECT ESTIMATE</h2>
+          <p class="section-desc">An interactive 7-step qualification wizard that scopes your technical requirements and prepares a tailored development roadmap.</p>
+
+          <div class="estimator-wizard-box" id="wizard-box">
+            <div class="wizard-progress-bar">
+              <div class="progress-fill" id="wizard-progress-fill" style="width: 14%;"></div>
+            </div>
+            <div class="wizard-step-header">
+              <span class="step-counter-tag" id="wizard-step-indicator">STEP 1 OF 7</span>
+              <h3 class="wizard-step-title" id="wizard-step-title">What type of solution do you need?</h3>
+            </div>
+
+            <div class="wizard-step-body" id="wizard-step-body">
+              <!-- Injected by script -->
+            </div>
+
+            <div class="wizard-footer-nav">
+              <button class="btn-wizard-back hidden" id="wizard-back-btn">← Previous</button>
+              <button class="btn-primary-gold" id="wizard-next-btn">Next Step →</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14. CONTACT SECTION -->
+      <section class="contact-section" id="contact">
+        <div class="section-container">
+          <div class="contact-grid-wrapper">
+            
+            <div class="contact-info-panel">
+              <span class="gold-badge">// DIRECT INITIATION</span>
+              <h2 class="contact-headline">LET'S BUILD SOMETHING THAT <span class="metallic-gold-text">MOVES YOUR BUSINESS.</span></h2>
+              <p class="contact-sub">
+                Ready to modernize your infrastructure, launch a high-impact mobile platform, or deploy the Riyadvi Guardian growth system? Connect with our senior architects today.
+              </p>
+
+              <div class="contact-channels">
+                <a href="https://wa.me/918072487427" target="_blank" rel="noopener" class="contact-channel-item">
+                  <div class="channel-icon whatsapp-color">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"></path></svg>
+                  </div>
+                  <div class="channel-info">
+                    <span class="ch-label">WhatsApp Instant Response</span>
+                    <strong class="ch-val">+91 8072487427</strong>
+                  </div>
+                </a>
+
+                <a href="tel:+918072487427" class="contact-channel-item">
+                  <div class="channel-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                  </div>
+                  <div class="channel-info">
+                    <span class="ch-label">Direct Corporate Phone</span>
+                    <strong class="ch-val">+91 8072487427</strong>
+                  </div>
+                </a>
+
+                <a href="mailto:info@riyadvisoftwaretechnologies.com" class="contact-channel-item">
+                  <div class="channel-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  </div>
+                  <div class="channel-info">
+                    <span class="ch-label">Official Inquiries</span>
+                    <strong class="ch-val">info@riyadvisoftwaretechnologies.com</strong>
+                  </div>
+                </a>
+
+                <div class="contact-channel-item">
+                  <div class="channel-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#F4D36B" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  </div>
+                  <div class="channel-info">
+                    <span class="ch-label">Headquarters</span>
+                    <address class="ch-val address-clean">
+                      17, Aarti Arcade, Dr Radha Krishnan Salai,<br>
+                      Mylapore, Chennai, Tamil Nadu 600004
+                    </address>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lead Capture Form with Validation -->
+            <div class="contact-form-panel">
+              <form id="contact-form" class="gold-form">
+                <h3 class="form-title">START YOUR PROJECT</h3>
+                <p class="form-desc">Provide your project outline to receive an executive briefing within 24 hours.</p>
+
+                <div class="form-group">
+                  <label for="form-name">Full Name *</label>
+                  <input type="text" id="form-name" required placeholder="John Doe">
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="form-company">Company / Organization *</label>
+                    <input type="text" id="form-company" required placeholder="Acme Global Inc.">
+                  </div>
+                  <div class="form-group">
+                    <label for="form-phone">Phone / WhatsApp *</label>
+                    <input type="tel" id="form-phone" required placeholder="+91 8072487427">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-email">Work Email *</label>
+                  <input type="email" id="form-email" required placeholder="john@company.com">
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="form-service">Required Capability</label>
+                    <select id="form-service">
+                      <option value="web">Web Development & Next.js</option>
+                      <option value="mobile">Mobile Application (iOS/Android)</option>
+                      <option value="guardian">Riyadvi Guardian Growth System</option>
+                      <option value="marketing">Digital Marketing & Ads</option>
+                      <option value="3d">3D Modeling & WebGL</option>
+                      <option value="ecommerce">E-Commerce Architecture</option>
+                      <option value="custom">Custom Enterprise Software</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-budget">Expected Investment</label>
+                    <select id="form-budget">
+                      <option value="2k-5k">$2,000 – $5,000</option>
+                      <option value="5k-15k">$5,000 – $15,000</option>
+                      <option value="15k-50k">$15,000 – $50,000</option>
+                      <option value="50k+">$50,000+ (Enterprise)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="form-message">Project Scope & Objectives *</label>
+                  <textarea id="form-message" rows="4" required placeholder="Outline your key deliverables, timeline goals, and target business outcomes..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary-gold w-100" id="form-submit-btn">
+                  <span>SUBMIT CONSULTATION REQUEST</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+                <div id="form-feedback" class="form-feedback-msg hidden"></div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 15. FOOTER & BRAND CLOSING EXPERIENCE -->
+      <footer class="site-footer">
+        <div class="section-container">
+          <div class="footer-links-grid">
+            <div class="footer-col brand-col">
+              <div class="footer-logo">
+                <img src="assets/riyadvilogo.png" alt="Riyadvi Emblem" class="f-logo-img">
+                <span>RIYADVI SOFTWARE TECHNOLOGIES</span>
+              </div>
+              <p class="f-tagline">
+                Digital Technology & Business Growth Partner.<br>
+                Engineering competitive digital advantages for progressive enterprises worldwide.
+              </p>
+              <div class="f-awards-badge">
+                <span>🏆 TechBehemoths 2025 Global Winner</span>
+              </div>
+            </div>
+
+            <div class="footer-col">
+              <h4 class="f-col-title">Capabilities</h4>
+              <ul class="f-links-list">
+                <li><a href="#services">Web Applications</a></li>
+                <li><a href="#services">Mobile Applications</a></li>
+                <li><a href="#services">AI & Intelligent Agents</a></li>
+                <li><a href="#services">Cloud & DevOps</a></li>
+                <li><a href="#services">Cybersecurity & SLA</a></li>
+                <li><a href="#services">3D Modeling & WebGL</a></li>
+                <li><a href="#services">E-Commerce Platforms</a></li>
+                <li><a href="#guardian">Riyadvi Guardian System</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4 class="f-col-title">Industries</h4>
+              <ul class="f-links-list">
+                <li><a href="#industries">Real Estate</a></li>
+                <li><a href="#industries">Healthcare & MedTech</a></li>
+                <li><a href="#industries">E-Commerce & Retail</a></li>
+                <li><a href="#industries">Startups & Scaleups</a></li>
+                <li><a href="#industries">Global Enterprise</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4 class="f-col-title">Company</h4>
+              <ul class="f-links-list">
+                <li><a href="#about">About Riyadvi</a></li>
+                <li><a href="#story">Company Timeline</a></li>
+                <li><a href="#awards">Awards & Certifications</a></li>
+                <li><a href="#portfolio">Client Case Studies</a></li>
+                <li><a href="#estimator">Project Estimator</a></li>
+                <li><a href="#contact">Contact Support</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-bottom-bar">
+            <div class="f-legal">
+              <span>© 2021–2026 Riyadvi Software Technologies Pvt. Ltd. All rights reserved.</span>
+              <a href="#" class="legal-link">Privacy Policy</a>
+              <a href="#" class="legal-link">Terms & Conditions</a>
+            </div>
+            <div class="f-brand-memory">
+              <span>DESIGN YOUR SUCCESS.</span>
+              <span class="gold-dot">•</span>
+              <span>POWERING DIGITAL INNOVATION & BUSINESS GROWTH.</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+  </main>
+
+  <!-- RIYADVI AI ASSISTANT WIDGET -->
+  <div class="ai-assistant-widget" id="ai-assistant">
+    <button class="assistant-trigger-btn round-logo-btn" id="assistant-toggle" aria-label="Open AI Assistant" title="Riyadvi AI Assistant">
+      <span class="pulse-ring"></span>
+      <img src="assets/riyadvilogo.png" alt="Riyadvi R Logo" class="assistant-r-logo">
+    </button>
+
+    <div class="assistant-modal hidden" id="assistant-modal">
+      <div class="assistant-header">
+        <div class="ai-info-box">
+          <div class="ai-header-emblem-wrap">
+            <img src="assets/riyadvilogo.png" alt="Riyadvi Logo" class="ai-header-emblem">
+            <span class="ai-dot-online"></span>
+          </div>
+          <div>
+            <strong>Riyadvi Assistant</strong>
+            <span class="ai-role-tag">Autonomous AI Growth Advisor</span>
+          </div>
+        </div>
+        <button class="ai-close-btn" id="assistant-close" aria-label="Close AI Assistant" title="Close">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="assistant-chat-body" id="chat-messages">
+        <div class="ai-msg">
+          <p>Hello! I am the Riyadvi Intelligent Assistant. How can I assist with your business growth and engineering goals today?</p>
+        </div>
+      </div>
+
+      <div class="assistant-suggestions">
+        <button class="sug-chip" data-query="services">What services do you offer?</button>
+        <button class="sug-chip" data-query="website">I need a website.</button>
+        <button class="sug-chip" data-query="guardian">Tell me about Riyadvi Guardian.</button>
+        <button class="sug-chip" data-query="consultation">I want a consultation.</button>
+      </div>
+
+      <div class="assistant-input-bar">
+        <input type="text" id="ai-input" placeholder="Ask about services, pricing, timeline...">
+        <button id="ai-send-btn" class="ai-send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE DETAIL MODAL (8-STEP WORKFLOW) -->
+  <div class="modal-backdrop hidden" id="service-modal">
+    <div class="service-modal-card">
+      <button class="modal-close-btn" id="service-modal-close">&times;</button>
+      <div id="service-modal-content"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
