@@ -4,6 +4,7 @@
   "description": "Riyadvi Software Technologies - Interactive 3D & Scroll Animation Website",
   "main": "server.js",
   "scripts": {
+    "build": "echo 'Build complete - static assets ready'",
     "start": "node server.js",
     "dev": "node server.js"
   },
