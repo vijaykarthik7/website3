@@ -212,27 +212,27 @@
 
   function getRoboFramePath(index) {
     const padded = String(index + 1).padStart(3, '0');
-    return `robojump updated/ezgif-frame-${padded}.png`;
+    return `robojump updated/ezgif-frame-${padded}.webp`;
   }
 
   function getEarthFramePath(index) {
     const padded = String(index + 1).padStart(3, '0');
-    return `earthrobo/ezgif-frame-${padded}.png`;
+    return `earthrobo/ezgif-frame-${padded}.webp`;
   }
 
   function getLappFramePath(index) {
     const padded = String(index + 1).padStart(3, '0');
-    return `lapp updated/ezgif-frame-${padded}.png`;
+    return `lapp updated/ezgif-frame-${padded}.webp`;
   }
 
   function getHandFramePath(index) {
     const padded = String(index + 1).padStart(3, '0');
-    return encodeURI(`Hand animation/ezgif-frame-${padded}.png`);
+    return encodeURI(`Hand animation/ezgif-frame-${padded}.webp`);
   }
 
   function getHumanFramePath(index) {
     const padded = String(index + 1).padStart(3, '0');
-    return encodeURI(`human up/ezgif-frame-${padded}.png`);
+    return encodeURI(`human up/ezgif-frame-${padded}.webp`);
   }
 
   // Unified stage registry for 60-120fps synchronized scrubbing
@@ -481,17 +481,15 @@
     processDownloadQueue();
   }
 
-  // Preloads keyframes in 4 progressive strided passes:
-  // Pass 1: Stride 8 (Entire stage scrubs instantly within ~1.5s on Vercel)
-  // Pass 2: Stride 4 (Max gap 2 frames)
-  // Pass 3: Stride 2 (Max gap 1 frame)
-  // Pass 4: Full density odd frames (Complete 60fps cinematic fidelity)
+  // Progressive multi-pass keyframe queuing:
+  // Pass 1 & 2: Instant keyframes (stride-8 and stride-4) for buttery scrubbing with tiny network footprint
+  // Pass 3 & 4: Detail in-betweens (stride-2 and odd frames) scheduled without blocking other stages
   function queueStridedKeyframes(stageName) {
     const stage = stageState[stageName];
     if (!stage) return;
     const total = stage.totalFrames;
 
-    // Pass 1: Stride 8 keyframes
+    // Pass 1: Stride 8 keyframes (25 frames = ~3MB in WebP, ready in ~300ms)
     for (let i = 0; i < total; i += 8) {
       queueFrame(stageName, i);
     }
@@ -499,27 +497,27 @@
       queueFrame(stageName, total - 1);
     }
 
-    // Pass 2: Stride 4 midpoints
+    // Pass 2: Stride 4 midpoints (halves interval to 2 frames)
     for (let i = 4; i < total; i += 8) {
       queueFrame(stageName, i);
     }
 
-    // Pass 3: Stride 2
-    for (let i = 2; i < total; i += 4) {
-      queueFrame(stageName, i);
-    }
-
-    // Pass 4: Full density odd frames
-    for (let i = 1; i < total; i += 2) {
-      queueFrame(stageName, i);
-    }
+    // Pass 3 & 4: In-between frames loaded smoothly in background
+    setTimeout(() => {
+      for (let i = 2; i < total; i += 4) {
+        queueFrame(stageName, i);
+      }
+      for (let i = 1; i < total; i += 2) {
+        queueFrame(stageName, i);
+      }
+    }, 1200);
   }
 
   // JIT Proximity Prioritizer: Promotes frames around the user's scroll position to the front
   function prioritizeActiveStageWindow(stageName, targetIndex) {
     const stage = stageState[stageName];
     if (!stage) return;
-    const offsets = [0, 1, -1, 2, -2, 3, -3, 4, -4, 5, -5];
+    const offsets = [0, 1, -1, 2, -2, 3, -3, 4, -4, 5, -5, 6, -6, 7, -7, 8, -8];
     for (let i = 0; i < offsets.length; i++) {
       const idx = targetIndex + offsets[i];
       if (idx >= 0 && idx < stage.totalFrames) {
