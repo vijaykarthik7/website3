@@ -7,23 +7,26 @@
   'use strict';
 
   // ==========================================================================
-  // 1. CINEMATIC PRELOADER (1-2s Gold Particle Sequence)
+  // 1. CINEMATIC PRELOADER (Swift, smooth 600ms sequence)
   // ==========================================================================
   const preloader = document.getElementById('preloader');
   const preloaderBar = document.getElementById('preloader-bar-fill');
   let preloadProgress = 0;
 
   const preloadInterval = setInterval(() => {
-    preloadProgress += 7;
+    preloadProgress += 12;
     if (preloaderBar) preloaderBar.style.width = `${Math.min(100, preloadProgress)}%`;
 
     if (preloadProgress >= 100) {
       clearInterval(preloadInterval);
-      setTimeout(() => {
-        document.body.classList.remove('loading-state');
-      }, 300);
+      document.body.classList.remove('loading-state');
+      if (preloader) {
+        preloader.style.opacity = '0';
+        preloader.style.pointerEvents = 'none';
+        setTimeout(() => { preloader.style.display = 'none'; }, 400);
+      }
     }
-  }, 50);
+  }, 40);
 
   // ==========================================================================
   // 2. DESKTOP CUSTOM MAGNETIC GOLD CURSOR
@@ -299,331 +302,189 @@
     }
   }
 
-  function renderRoboFrame(index) {
-    if (!roboCtx || !roboCanvas) return;
-    const safeIndex = Math.max(0, Math.min(TOTAL_ROBO_FRAMES - 1, index));
-    const img = roboFrames[safeIndex];
+  // Helper to find nearest loaded frame if current frame is loading (ensures zero stutter/flicker)
+  function findNearestFrame(framesArray, targetIndex, totalFrames) {
+    if (framesArray[targetIndex] && framesArray[targetIndex].complete && framesArray[targetIndex].naturalWidth > 0) {
+      return framesArray[targetIndex];
+    }
+    // Search backward first
+    for (let i = targetIndex - 1; i >= 0; i--) {
+      if (framesArray[i] && framesArray[i].complete && framesArray[i].naturalWidth > 0) {
+        return framesArray[i];
+      }
+    }
+    // Search forward
+    for (let i = targetIndex + 1; i < totalFrames; i++) {
+      if (framesArray[i] && framesArray[i].complete && framesArray[i].naturalWidth > 0) {
+        return framesArray[i];
+      }
+    }
+    return framesArray[0];
+  }
+
+  // Unified Frame Drawer (Desktop 100% unchanged, Mobile: full-height immersive wallpaper framing)
+  function drawCanvasFrame(ctx, canvas, framesArray, index, totalFrames, focalX = 0.5) {
+    if (!ctx || !canvas) return;
+    const safeIndex = Math.max(0, Math.min(totalFrames - 1, index));
+    const img = findNearestFrame(framesArray, safeIndex, totalFrames);
 
     if (!img || !img.complete || img.naturalWidth === 0) return;
 
-    roboCtx.imageSmoothingEnabled = true;
-    roboCtx.imageSmoothingQuality = 'high';
-    roboCtx.clearRect(0, 0, roboCanvas.width, roboCanvas.height);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const imgRatio = img.naturalWidth / img.naturalHeight;
-    const canvasRatio = roboCanvas.width / roboCanvas.height;
+    const canvasRatio = canvas.width / canvas.height;
+    const isMobile = window.innerWidth <= 768;
+
     let drawW, drawH, drawX, drawY;
 
-    if (canvasRatio > imgRatio) {
-      drawW = roboCanvas.width;
-      drawH = Math.round(roboCanvas.width / imgRatio);
-      drawX = 0;
-      drawY = Math.round((roboCanvas.height - drawH) / 2);
+    if (!isMobile) {
+      // DESKTOP: EXACT ORIGINAL LOGIC (100% UNCHANGED)
+      if (canvasRatio > imgRatio) {
+        drawW = canvas.width;
+        drawH = Math.round(canvas.width / imgRatio);
+        drawX = 0;
+        drawY = Math.round((canvas.height - drawH) / 2);
+      } else {
+        drawH = canvas.height;
+        drawW = Math.round(canvas.height * imgRatio);
+        drawX = Math.round((canvas.width - drawW) / 2);
+        drawY = 0;
+      }
     } else {
-      drawH = roboCanvas.height;
-      drawW = Math.round(roboCanvas.height * imgRatio);
-      drawX = Math.round((roboCanvas.width - drawW) / 2);
+      // MOBILE: Full-height immersive wallpaper framing
+      // Fills mobile viewport height with zero black letterbox bars,
+      // perfectly centering the 3D subject and landscape:
+      drawH = canvas.height;
+      drawW = Math.round(canvas.height * imgRatio);
+      drawX = Math.round(canvas.width * 0.5 - drawW * focalX);
       drawY = 0;
     }
 
-    roboCtx.drawImage(img, drawX, drawY, drawW, drawH);
+    ctx.drawImage(img, drawX, drawY, drawW, drawH);
+  }
+
+  function renderRoboFrame(index) {
+    drawCanvasFrame(roboCtx, roboCanvas, roboFrames, index, TOTAL_ROBO_FRAMES, 0.46);
   }
 
   function renderEarthFrame(index) {
-    if (!earthCtx || !earthCanvas) return;
-    const safeIndex = Math.max(0, Math.min(TOTAL_EARTH_FRAMES - 1, index));
-    const img = earthFrames[safeIndex];
-
-    if (!img || !img.complete || img.naturalWidth === 0) return;
-
-    earthCtx.imageSmoothingEnabled = true;
-    earthCtx.imageSmoothingQuality = 'high';
-    earthCtx.clearRect(0, 0, earthCanvas.width, earthCanvas.height);
-
-    const imgRatio = img.naturalWidth / img.naturalHeight;
-    const canvasRatio = earthCanvas.width / earthCanvas.height;
-    let drawW, drawH, drawX, drawY;
-
-    if (canvasRatio > imgRatio) {
-      drawW = earthCanvas.width;
-      drawH = Math.round(earthCanvas.width / imgRatio);
-      drawX = 0;
-      drawY = Math.round((earthCanvas.height - drawH) / 2);
-    } else {
-      drawH = earthCanvas.height;
-      drawW = Math.round(earthCanvas.height * imgRatio);
-      drawX = Math.round((earthCanvas.width - drawW) / 2);
-      drawY = 0;
-    }
-
-    earthCtx.drawImage(img, drawX, drawY, drawW, drawH);
+    drawCanvasFrame(earthCtx, earthCanvas, earthFrames, index, TOTAL_EARTH_FRAMES, 0.50);
   }
 
   function renderLappFrame(index) {
-    if (!lappCtx || !lappCanvas) return;
-    const safeIndex = Math.max(0, Math.min(TOTAL_LAPP_FRAMES - 1, index));
-    const img = lappFrames[safeIndex];
-
-    if (!img || !img.complete || img.naturalWidth === 0) return;
-
-    lappCtx.imageSmoothingEnabled = true;
-    lappCtx.imageSmoothingQuality = 'high';
-    lappCtx.clearRect(0, 0, lappCanvas.width, lappCanvas.height);
-
-    const imgRatio = img.naturalWidth / img.naturalHeight;
-    const canvasRatio = lappCanvas.width / lappCanvas.height;
-    let drawW, drawH, drawX, drawY;
-
-    if (canvasRatio > imgRatio) {
-      drawW = lappCanvas.width;
-      drawH = Math.round(lappCanvas.width / imgRatio);
-      drawX = 0;
-      drawY = Math.round((lappCanvas.height - drawH) / 2);
-    } else {
-      drawH = lappCanvas.height;
-      drawW = Math.round(lappCanvas.height * imgRatio);
-      drawX = Math.round((lappCanvas.width - drawW) / 2);
-      drawY = 0;
-    }
-
-    lappCtx.drawImage(img, drawX, drawY, drawW, drawH);
+    drawCanvasFrame(lappCtx, lappCanvas, lappFrames, index, TOTAL_LAPP_FRAMES, 0.52);
   }
 
   function renderHandFrame(index) {
-    if (!handCtx || !handCanvas) return;
-    const safeIndex = Math.max(0, Math.min(TOTAL_HAND_FRAMES - 1, index));
-    const img = handFrames[safeIndex];
-
-    if (!img || !img.complete || img.naturalWidth === 0) return;
-
-    handCtx.imageSmoothingEnabled = true;
-    handCtx.imageSmoothingQuality = 'high';
-    handCtx.clearRect(0, 0, handCanvas.width, handCanvas.height);
-
-    const imgRatio = img.naturalWidth / img.naturalHeight;
-    const canvasRatio = handCanvas.width / handCanvas.height;
-    let drawW, drawH, drawX, drawY;
-
-    if (canvasRatio > imgRatio) {
-      drawW = handCanvas.width;
-      drawH = Math.round(handCanvas.width / imgRatio);
-      drawX = 0;
-      drawY = Math.round((handCanvas.height - drawH) / 2);
-    } else {
-      drawH = handCanvas.height;
-      drawW = Math.round(handCanvas.height * imgRatio);
-      drawX = Math.round((handCanvas.width - drawW) / 2);
-      drawY = 0;
-    }
-
-    handCtx.drawImage(img, drawX, drawY, drawW, drawH);
+    drawCanvasFrame(handCtx, handCanvas, handFrames, index, TOTAL_HAND_FRAMES, 0.50);
   }
 
   function renderHumanFrame(index) {
-    if (!humanCtx || !humanCanvas) return;
-    const safeIndex = Math.max(0, Math.min(TOTAL_HUMAN_FRAMES - 1, index));
-    const img = humanFrames[safeIndex];
-
-    if (!img || !img.complete || img.naturalWidth === 0) return;
-
-    humanCtx.imageSmoothingEnabled = true;
-    humanCtx.imageSmoothingQuality = 'high';
-    humanCtx.clearRect(0, 0, humanCanvas.width, humanCanvas.height);
-
-    const imgRatio = img.naturalWidth / img.naturalHeight;
-    const canvasRatio = humanCanvas.width / humanCanvas.height;
-    let drawW, drawH, drawX, drawY;
-
-    if (canvasRatio > imgRatio) {
-      drawW = humanCanvas.width;
-      drawH = Math.round(humanCanvas.width / imgRatio);
-      drawX = 0;
-      drawY = Math.round((humanCanvas.height - drawH) / 2);
-    } else {
-      drawH = humanCanvas.height;
-      drawW = Math.round(humanCanvas.height * imgRatio);
-      drawX = Math.round((humanCanvas.width - drawW) / 2);
-      drawY = 0;
-    }
-
-    humanCtx.drawImage(img, drawX, drawY, drawW, drawH);
+    drawCanvasFrame(humanCtx, humanCanvas, humanFrames, index, TOTAL_HUMAN_FRAMES, 0.50);
   }
 
-  // Preload Robojump Updated frames
-  function initRoboFrames() {
-    const firstImg = new Image();
-    firstImg.src = getRoboFramePath(0);
-    firstImg.onload = async () => {
-      if (firstImg.decode) {
-        try { await firstImg.decode(); } catch (e) {}
+  // ==========================================================================
+  // PROGRESSIVE CONTROLLED FRAME LOADER (Prevents network congestion on Vercel)
+  // ==========================================================================
+  const MAX_CONCURRENT_DOWNLOADS = 4;
+  let activeDownloads = 0;
+  const downloadQueue = [];
+  const queuedIndices = {
+    robo: new Set(),
+    earth: new Set(),
+    lapp: new Set(),
+    hand: new Set(),
+    human: new Set()
+  };
+
+  function processDownloadQueue() {
+    while (activeDownloads < MAX_CONCURRENT_DOWNLOADS && downloadQueue.length > 0) {
+      const task = downloadQueue.shift();
+      const frames = task.frames;
+      const index = task.index;
+
+      if (frames[index] && frames[index].complete && frames[index].naturalWidth > 0) {
+        continue;
       }
-      roboFrames[0] = firstImg;
+
+      activeDownloads++;
+      const img = new Image();
+      img.src = task.pathFn(index);
+      const onDone = () => {
+        frames[index] = img;
+        activeDownloads--;
+        if (task.onLoaded) task.onLoaded(img, index);
+        processDownloadQueue();
+      };
+      img.onload = onDone;
+      img.onerror = onDone;
+    }
+  }
+
+  function queueFrame(stageName, frames, pathFn, index, priority = false, onLoaded = null) {
+    if (frames[index] && frames[index].complete) return;
+    if (queuedIndices[stageName].has(index)) return;
+    queuedIndices[stageName].add(index);
+
+    const task = { frames, pathFn, index, onLoaded };
+    if (priority) {
+      downloadQueue.unshift(task);
+    } else {
+      downloadQueue.push(task);
+    }
+    processDownloadQueue();
+  }
+
+  function queueFrameRange(stageName, frames, pathFn, start, end) {
+    for (let i = start; i < end; i++) {
+      queueFrame(stageName, frames, pathFn, i);
+    }
+  }
+
+  let stage2Started = false;
+  let stage3Started = false;
+  let stage4Started = false;
+  let stage5Started = false;
+
+  function initProgressiveFrames() {
+    // 1. Stage 1 (Hero - Robojump): Load Frame 0 immediately with priority
+    const firstRobo = new Image();
+    firstRobo.src = getRoboFramePath(0);
+    firstRobo.onload = () => {
+      roboFrames[0] = firstRobo;
       loadedRoboCount++;
       resizeAllCanvases();
       renderRoboFrame(0);
+
+      // Once hero frame 0 is rendered, queue remaining Robojump frames in controlled background batches
+      queueFrameRange('robo', roboFrames, getRoboFramePath, 1, TOTAL_ROBO_FRAMES);
+    };
+    firstRobo.onerror = () => {
+      queueFrameRange('robo', roboFrames, getRoboFramePath, 1, TOTAL_ROBO_FRAMES);
     };
 
-    for (let i = 1; i < TOTAL_ROBO_FRAMES; i++) {
-      const img = new Image();
-      img.src = getRoboFramePath(i);
-      img.onload = () => {
-        if (img.decode) {
-          img.decode().then(() => {
-            roboFrames[i] = img;
-            loadedRoboCount++;
-          }).catch(() => {
-            roboFrames[i] = img;
-            loadedRoboCount++;
-          });
-        } else {
-          roboFrames[i] = img;
-          loadedRoboCount++;
-        }
-      };
-    }
+    // 2. Load Frame 0 of each subsequent stage so base frames exist without downloading 800+ images
+    const firstEarth = new Image();
+    firstEarth.src = getEarthFramePath(0);
+    firstEarth.onload = () => { earthFrames[0] = firstEarth; loadedEarthCount++; };
+
+    const firstLapp = new Image();
+    firstLapp.src = getLappFramePath(0);
+    firstLapp.onload = () => { lappFrames[0] = firstLapp; loadedLappCount++; };
+
+    const firstHand = new Image();
+    firstHand.src = getHandFramePath(0);
+    firstHand.onload = () => { handFrames[0] = firstHand; loadedHandCount++; };
+
+    const firstHuman = new Image();
+    firstHuman.src = getHumanFramePath(0);
+    firstHuman.onload = () => { humanFrames[0] = firstHuman; loadedHumanCount++; };
   }
 
-  // Preload Earthrobo frames
-  function initEarthFrames() {
-    const firstImg = new Image();
-    firstImg.src = getEarthFramePath(0);
-    firstImg.onload = async () => {
-      if (firstImg.decode) {
-        try { await firstImg.decode(); } catch (e) {}
-      }
-      earthFrames[0] = firstImg;
-      loadedEarthCount++;
-      resizeAllCanvases();
-      renderEarthFrame(0);
-    };
-
-    for (let i = 1; i < TOTAL_EARTH_FRAMES; i++) {
-      const img = new Image();
-      img.src = getEarthFramePath(i);
-      img.onload = () => {
-        if (img.decode) {
-          img.decode().then(() => {
-            earthFrames[i] = img;
-            loadedEarthCount++;
-          }).catch(() => {
-            earthFrames[i] = img;
-            loadedEarthCount++;
-          });
-        } else {
-          earthFrames[i] = img;
-          loadedEarthCount++;
-        }
-      };
-    }
-  }
-
-  // Preload Lapp Updated frames
-  function initLappFrames() {
-    const firstImg = new Image();
-    firstImg.src = getLappFramePath(0);
-    firstImg.onload = async () => {
-      if (firstImg.decode) {
-        try { await firstImg.decode(); } catch (e) {}
-      }
-      lappFrames[0] = firstImg;
-      loadedLappCount++;
-      resizeAllCanvases();
-      renderLappFrame(0);
-    };
-
-    for (let i = 1; i < TOTAL_LAPP_FRAMES; i++) {
-      const img = new Image();
-      img.src = getLappFramePath(i);
-      img.onload = () => {
-        if (img.decode) {
-          img.decode().then(() => {
-            lappFrames[i] = img;
-            loadedLappCount++;
-          }).catch(() => {
-            lappFrames[i] = img;
-            loadedLappCount++;
-          });
-        } else {
-          lappFrames[i] = img;
-          loadedLappCount++;
-        }
-      };
-    }
-  }
-
-  // Preload Hand animation frames
-  function initHandFrames() {
-    const firstImg = new Image();
-    firstImg.src = getHandFramePath(0);
-    firstImg.onload = async () => {
-      if (firstImg.decode) {
-        try { await firstImg.decode(); } catch (e) {}
-      }
-      handFrames[0] = firstImg;
-      loadedHandCount++;
-      resizeAllCanvases();
-      renderHandFrame(0);
-    };
-
-    for (let i = 1; i < TOTAL_HAND_FRAMES; i++) {
-      const img = new Image();
-      img.src = getHandFramePath(i);
-      img.onload = () => {
-        if (img.decode) {
-          img.decode().then(() => {
-            handFrames[i] = img;
-            loadedHandCount++;
-          }).catch(() => {
-            handFrames[i] = img;
-            loadedHandCount++;
-          });
-        } else {
-          handFrames[i] = img;
-          loadedHandCount++;
-        }
-      };
-    }
-  }
-
-  // Preload Human up frames
-  function initHumanFrames() {
-    const firstImg = new Image();
-    firstImg.src = getHumanFramePath(0);
-    firstImg.onload = async () => {
-      if (firstImg.decode) {
-        try { await firstImg.decode(); } catch (e) {}
-      }
-      humanFrames[0] = firstImg;
-      loadedHumanCount++;
-      resizeAllCanvases();
-      renderHumanFrame(0);
-    };
-
-    for (let i = 1; i < TOTAL_HUMAN_FRAMES; i++) {
-      const img = new Image();
-      img.src = getHumanFramePath(i);
-      img.onload = () => {
-        if (img.decode) {
-          img.decode().then(() => {
-            humanFrames[i] = img;
-            loadedHumanCount++;
-          }).catch(() => {
-            humanFrames[i] = img;
-            loadedHumanCount++;
-          });
-        } else {
-          humanFrames[i] = img;
-          loadedHumanCount++;
-        }
-      };
-    }
-  }
-
-  initRoboFrames();
-  initEarthFrames();
-  initLappFrames();
-  initHandFrames();
-  initHumanFrames();
+  initProgressiveFrames();
   window.addEventListener('resize', resizeAllCanvases);
 
   // High-performance smooth LERP render loop for all 5 canvas sequences
@@ -742,6 +603,25 @@
     // 5. Human Up (b4 to b5, 192 frames)
     const p5 = Math.min(1, Math.max(0, (scrollY - b4) / Math.max(1, b5 - b4)));
     targetHumanIndex = Math.min(TOTAL_HUMAN_FRAMES - 1, Math.max(0, Math.floor(p5 * (TOTAL_HUMAN_FRAMES - 1))));
+
+    // Progressive Lazy Load Triggers: fetch upcoming stages smoothly when approaching them
+    const preloadAhead = window.innerHeight * 1.5;
+    if (!stage2Started && scrollY > (b1 - preloadAhead)) {
+      stage2Started = true;
+      queueFrameRange('earth', earthFrames, getEarthFramePath, 1, TOTAL_EARTH_FRAMES);
+    }
+    if (!stage3Started && scrollY > (b2 - preloadAhead)) {
+      stage3Started = true;
+      queueFrameRange('lapp', lappFrames, getLappFramePath, 1, TOTAL_LAPP_FRAMES);
+    }
+    if (!stage4Started && scrollY > (b3 - preloadAhead)) {
+      stage4Started = true;
+      queueFrameRange('hand', handFrames, getHandFramePath, 1, TOTAL_HAND_FRAMES);
+    }
+    if (!stage5Started && scrollY > (b4 - preloadAhead)) {
+      stage5Started = true;
+      queueFrameRange('human', humanFrames, getHumanFramePath, 1, TOTAL_HUMAN_FRAMES);
+    }
 
     // Smooth Crossfades between the 5 canvases around stage boundaries
     const crossfadeDist = Math.min(260, window.innerHeight * 0.3);
