@@ -583,10 +583,18 @@ body:not(.loading-state) .preloader-overlay {
   display: block;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: high-quality;
-  filter: contrast(1.14) brightness(1.05) saturate(1.12);
   transform: translateZ(0);
   will-change: opacity;
-  transition: opacity 0.25s ease-out;
+}
+
+@media (min-width: 769px) {
+  #robojump-canvas,
+  #earthrobo-canvas,
+  #lapp-canvas,
+  #hand-canvas,
+  #human-canvas {
+    filter: contrast(1.14) brightness(1.05) saturate(1.12);
+  }
 }
 
 #robojump-canvas {
